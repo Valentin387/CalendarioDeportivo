@@ -1,6 +1,9 @@
 from django.db import models
+#from django.contrib.auth.models import UserAdmin
+
 
 # Create your models here.
+
 
 class User(models.Model):
     Password = models.CharField(max_length=10)
@@ -12,6 +15,7 @@ class User(models.Model):
 
     def __str__(self):
         return f"<UserType> {self.User_Type}> User: {self.UserName}"
+
 
 class Field(models.Model):
     Name = models.CharField(max_length=50) 
