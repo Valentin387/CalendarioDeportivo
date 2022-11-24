@@ -8,8 +8,6 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    User.username=models.CharField(max_length=20)
-    User.password = models.CharField(max_length=20)
     Star_H = models.FloatField()
     Star_R = models.FloatField()
     Star_T = models.FloatField()
