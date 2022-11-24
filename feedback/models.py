@@ -1,20 +1,21 @@
 from django.db import models
-#from django.contrib.auth.models import UserAdmin
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
+class Profile(models.Model):
 
-class User(models.Model):
-    Password = models.CharField(max_length=10)
-    User_Type = models.CharField(max_length=10)
-    UserName = models.CharField(max_length=10)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    User.username=models.CharField(max_length=20)
+    User.password = models.CharField(max_length=20)
     Star_H = models.FloatField()
     Star_R = models.FloatField()
     Star_T = models.FloatField()
 
     def __str__(self):
-        return f"<UserType> {self.User_Type}> User: {self.UserName}"
+        return f"<User>: "
 
 
 class Field(models.Model):
@@ -24,7 +25,7 @@ class Field(models.Model):
         return f"<Name> {self.Name}> "
 
 class Event(models.Model):
-    Creator = models.ForeignKey(User, on_delete=models.PROTECT, related_name="Event_creator")
+    Creator = models.ForeignKey(Profile, on_delete=models.PROTECT, related_name="Event_creator")
     Date = models.DateField(max_length=10) 
     Sport = models.CharField(max_length=10)
     Field = models.ForeignKey(Field, on_delete=models.PROTECT, related_name="Match_field")
@@ -34,7 +35,7 @@ class Event(models.Model):
 
 
 class Subscription(models.Model):
-    User = models.ForeignKey(User, on_delete=models.PROTECT, related_name="Match_field")
+    profile = models.ForeignKey(Profile, on_delete=models.PROTECT, related_name="Match_field")
     Event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name="Match_field")
 
     def __str__(self):
