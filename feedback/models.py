@@ -1,20 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 #from django.contrib.auth.models import UserAdmin
 
 
 # Create your models here.
 
 
-class User(models.Model):
-    Password = models.CharField(max_length=10)
-    User_Type = models.CharField(max_length=10)
-    UserName = models.CharField(max_length=10)
-    Star_H = models.FloatField()
-    Star_R = models.FloatField()
-    Star_T = models.FloatField()
+class User(AbstractUser):
+    Star_H = models.FloatField(null= True, blank=True)
+    Star_R = models.FloatField(null= True, blank=True)
+    Star_T = models.FloatField(null= True, blank=True)
 
     def __str__(self):
-        return f"<UserType> {self.User_Type}> User: {self.UserName}"
+        return f"{self.username}"
 
 
 class Field(models.Model):
