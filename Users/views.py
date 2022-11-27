@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
+from .models import CustomUser
+
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
@@ -26,4 +28,21 @@ def login_view(request):
     return render(request, "users/login.html")
 
 def logout_view(request):
-    pass
+    logout(request)
+    return HttpResponseRedirect(reverse("index"))
+
+def RegisterAccount(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+        newUser = CustomUser.objects.get(email=email)
+        if newUser is None:
+            newUser = CustomUser.objects.create_user(email, password)
+            newUser.save()
+        else:
+            return render(request, "users/login.html", {
+                "message": "That email is not available"
+            })
+        return HttpResponseRedirect(reverse("index"))
+
+
