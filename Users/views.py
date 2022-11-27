@@ -8,7 +8,7 @@ from .models import CustomUser
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("users:login"))
     return render(request, "users/profile.html")
     
 def login_view(request):
@@ -19,7 +19,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("users:index"))
         else:
             return render(request, "users/login.html", {
                 "message": "Invalid Credentials"
@@ -29,7 +29,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("users:index"))
 
 def RegisterAccount(request):
     if request.method == "POST":
@@ -43,7 +43,7 @@ def RegisterAccount(request):
             return render(request, "users/login.html", {
                 "message": "That email is not available"
             })
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("users:index"))
 
 def GoToFeedback(request):
    # lleveme a la app feedback/templates/index.html
