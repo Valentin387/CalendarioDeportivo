@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-
+from django.shortcuts import redirect
 from .models import CustomUser
 
 # Create your views here.
@@ -46,7 +46,9 @@ def RegisterAccount(request):
         return HttpResponseRedirect(reverse("index"))
 
 def GoToFeedback(request):
-    pass
+   # lleveme a la app feedback/templates/index.html
+   r = redirect("feedback:index")
+   return r
 
 def CreateNewEvent(request):
     pass
