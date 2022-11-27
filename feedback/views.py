@@ -16,3 +16,8 @@ def index(request):
 def GoToProfile(request):
     r = redirect("users:index")
     return r
+
+
+def CreateNewEvent(request):
+    return render(request, "NewEvent.html")
+
