@@ -1,0 +1,16 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+    <h1> Welcome, This is the profile of {{ request.user.email }}</h1>
+
+
+    <a href ="{% url 'logout' %}"> Logout</a>
+  
+
+    <a href = "{% url 'GoToFeedback' %}"> Go to feeback</a>
+    
+
+    <a href = "{% url 'CreateNewEvent' %}"> Create New Event</a>
+
+{% endblock %}
