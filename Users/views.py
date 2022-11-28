@@ -51,4 +51,5 @@ def GoToFeedback(request):
    return r
 
 def CreateNewEvent(request):
-    pass
+    r = redirect("feedback:CreateNewEvent")
+    return r
