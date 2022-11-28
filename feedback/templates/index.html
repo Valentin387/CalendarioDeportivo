@@ -3,6 +3,25 @@
 {% block body %}
 
 <div>  This is the feedback </div>
+<table border='1'>
+    <tr>
+      <th>Creator</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Sport</th>
+      <th>Field</th>
+    </tr>
+    {% for x in events %}
+      <tr>
+          <td>{{ x.Creator }}</td>
+          <td>{{ x.Name }}</td>
+          <td>{{ x.Date }}</td>
+          <td>{{ x.Sport }}</td>
+          <td>{{ x.Field }}</td>
+      </tr>
+      <tr>{{ x }}</tr>
+    {% endfor %}
+</table>
 
 <a href = "{% url 'feedback:GoToProfile' %}"> Profile </a>
 

@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from feedback.forms import EventForm
+from users.models import Event
+from django.http import HttpResponse
 
 # Create your views here.
 """
@@ -12,7 +14,11 @@ def index(request):
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
-    return render(request, "index.html")
+    else:
+        table=Event.objects.all().values()
+        return HttpResponse(render(request, "index.html", {
+            "events":table
+        }))
 
 def GoToProfile(request):
     r = redirect("users:index")
@@ -22,10 +28,11 @@ def GoToProfile(request):
 def CreateNewEvent(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
-
         if form.is_valid():
             form.save()
             return render(request, "thanks.html")
     else:
         form = EventForm()
     return render(request, 'NewEvent.html', {'form': form})
+
+

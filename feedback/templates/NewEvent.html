@@ -7,11 +7,9 @@
 <form action="{% url 'feedback:CreateNewEvent' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" />
+    <input type="submit" value="Crear y publicar"/>
 </form>
 
-
-<a href = "{% url 'feedback:GoToProfile' %}"> Crear y publicar </a>
 
 <a href = "{% url 'feedback:GoToProfile' %}"> Cancelar </a>
 
