@@ -8,5 +8,6 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("RegisterAccount", views.RegisterAccount, name="register"),
     path("GoToFeedback", views.GoToFeedback, name="GoToFeedback"),
-    path("CreateNewEvent", views.CreateNewEvent, name="CreateNewEvent")
+    path("CreateNewEvent", views.CreateNewEvent, name="CreateNewEvent"),
+    path("GoToAdmin", views.GoToAdmin, name="GoToAdmin"),
 ]

@@ -53,3 +53,8 @@ def GoToFeedback(request):
 def CreateNewEvent(request):
     r = redirect("feedback:CreateNewEvent")
     return r
+
+def GoToAdmin(request):
+    r = redirect(reverse("admin:index"))
+    return r
+
