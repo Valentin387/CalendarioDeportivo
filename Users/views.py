@@ -74,3 +74,8 @@ def GoToAdmin(request):
     r = redirect(reverse("admin:index"))
     return r
 
+def detail(request,app, action, subscription_id):
+    s1=Subscription.objects.get(pk=subscription_id)
+    s1.delete()
+    r = redirect("users:index")
+    return r

@@ -10,4 +10,5 @@ urlpatterns = [
     path("GoToFeedback", views.GoToFeedback, name="GoToFeedback"),
     path("CreateNewEvent", views.CreateNewEvent, name="CreateNewEvent"),
     path("GoToAdmin", views.GoToAdmin, name="GoToAdmin"),
+    path('<app>/<action>/<subscription_id>/',views.detail, name='detail'),
 ]
