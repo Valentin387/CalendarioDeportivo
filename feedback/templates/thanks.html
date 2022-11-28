@@ -2,14 +2,10 @@
 
 {% block body %}
 
-<div>  Create New Event </div>
+<h1>Thanks for your response.</h1>
 
-<form action="{% url 'feedback:CreateNewEvent' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
-</form>
 
+<a href = "{% url 'feedback:CreateNewEvent' %}"> Crear otro evento </a>
 
 <a href = "{% url 'feedback:GoToProfile' %}"> Crear y publicar </a>
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
+from feedback.forms import EventForm
 
 # Create your views here.
 """
@@ -19,5 +20,12 @@ def GoToProfile(request):
 
 
 def CreateNewEvent(request):
-    return render(request, "NewEvent.html")
+    if request.method == 'POST':
+        form = EventForm(request.POST)
 
+        if form.is_valid():
+            form.save()
+            return render(request, "thanks.html")
+    else:
+        form = EventForm()
+    return render(request, 'NewEvent.html', {'form': form})
