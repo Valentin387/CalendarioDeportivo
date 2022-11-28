@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from feedback.forms import EventForm
-from users.models import Event, CustomUser, Field
+from users.models import Event, CustomUser, Field, Subscription
 from django.http import HttpResponse
 
 # Create your views here.
@@ -35,4 +35,10 @@ def CreateNewEvent(request):
         form = EventForm()
     return render(request, 'NewEvent.html', {'form': form})
 
+def detail(request,app, action, event_id):
+    E=Event.objects.get(pk=event_id)
+    s1 = Subscription(User = request.user, Event=E)
+    s1.save()
+    r = redirect("feedback:index")
+    return r
 

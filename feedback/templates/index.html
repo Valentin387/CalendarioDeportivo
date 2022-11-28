@@ -10,6 +10,8 @@
       <th>Date</th>
       <th>Sport</th>
       <th>Field</th>
+      <th>Button for subscribing</th>
+      <th>Button for unsubscribing</th>
     </tr>
     {% for x in events %}
       <tr>
@@ -18,6 +20,8 @@
           <td>{{ x.Date }}</td>
           <td>{{ x.Sport }}</td>
           <td>{{ x.Field }}</td>
+          <td> <a href="Feedback/Subscribe/{{ x.id }}"> Subscribe</a> </td>
+          <td>Unsubscribe</td>
       </tr>
     {% endfor %}
 </table>
