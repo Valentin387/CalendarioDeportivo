@@ -51,10 +51,14 @@ def RegisterAccount(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
-        newUser = CustomUser.objects.get(email=email)
+        #newUser = CustomUser.objects.get(email=email)
+        newUser = authenticate(email=email, password=password)
         if newUser is None:
             newUser = CustomUser.objects.create_user(email, password)
             newUser.save()
+            return render(request, "users/login.html", {
+                "message": "Account created successfully"
+            })
         else:
             return render(request, "users/login.html", {
                 "message": "That email is not available"
