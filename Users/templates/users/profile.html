@@ -4,15 +4,38 @@
 
     <h1> Welcome, This is the profile of {{ request.user.email }}</h1>
 
+    <h1> List of events you are subscribed to:</h1>
 
-    <a href ="{% url 'users:logout' %}"> Logout</a>
+    <table border='1'>
+        <tr>
+          <th>Event Creator</th>
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Sport</th>
+          <th>Field</th>
+          <th>Button for unsubscribing</th>
+        </tr>
+        {% for x in events %}
+          <tr>
+              <td>{{ x.Event.Creator }}</td>
+              <td>{{ x.Event }}</td>
+              <td>{{ x.Event.Date }}</td>
+              <td>{{ x.Event.Sport }}</td>
+              <td>{{ x.Event.Field }}</td>
+              <td> <a href="Profile/Unsubscribe/{{ x.id }}"> Unsubscribe</a> </td>
+          </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href ="{% url 'users:logout' %}"> Logout</a><br>
   
 
-    <a href = "{% url 'users:GoToFeedback' %}"> Go to feeback</a>
+    <a href = "{% url 'users:GoToFeedback' %}"> Go to feeback</a><br>
     
 
-    <a href = "{% url 'users:CreateNewEvent' %}"> Create New Event</a>
+    <a href = "{% url 'users:CreateNewEvent' %}"> Create New Event</a><br>
 
-    <a href = "{% url 'users:GoToAdmin' %}"> Application Settings (only for admins) </a>
+    <a href = "{% url 'users:GoToAdmin' %}"> Application Settings (only for admins) </a><br>
 
 {% endblock %}

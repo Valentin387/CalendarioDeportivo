@@ -4,12 +4,28 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from .models import CustomUser
+from users.models import Event, CustomUser, Field, Subscription
+from django.http import HttpResponse
 
 # Create your views here.
+"""
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
     return render(request, "users/profile.html")
+"""
+
+def index(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("users:login"))
+    else:
+        table=Subscription.objects.filter(User=request.user).select_related("Event") #you can do just: select_related()
+        print("TABLA")
+        print(table)
+        return HttpResponse(render(request, "users/profile.html", {
+            "events":table
+        }))
+
     
 def login_view(request):
     if request.method == "POST":
