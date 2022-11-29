@@ -1,9 +1,11 @@
 {% extends "users/layout.html" %}
 
+{% block title %} Login {% endblock %}
+
 {% block body %}
 
 {% if message %}
-    <div> {{ message }}</div>
+    <div> <p class="text-light">{{ message }} </p></div>
 {% endif %}
  
 <form action="{% url 'users:login' %}" method="post">

@@ -20,8 +20,6 @@ def index(request):
         return HttpResponseRedirect(reverse("users:login"))
     else:
         table=Subscription.objects.filter(User=request.user).select_related("Event") #you can do just: select_related()
-        print("TABLA")
-        print(table)
         return HttpResponse(render(request, "users/profile.html", {
             "events":table
         }))
@@ -51,6 +49,8 @@ def RegisterAccount(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
+        if email == None or email == "" or password == None or password == "":
+            return HttpResponseRedirect(reverse("users:index"))
         #newUser = CustomUser.objects.get(email=email)
         newUser = authenticate(email=email, password=password)
         if newUser is None:
