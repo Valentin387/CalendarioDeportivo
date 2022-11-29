@@ -51,7 +51,7 @@ def RegisterAccount(request):
         password = request.POST["password"]
         if email == None or email == "" or password == None or password == "":
             return HttpResponseRedirect(reverse("users:index"))
-        #newUser = CustomUser.objects.get(email=email)
+        newUser = CustomUser.objects.get(email=email)
         newUser = authenticate(email=email, password=password)
         if newUser is None:
             newUser = CustomUser.objects.create_user(email, password)

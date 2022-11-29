@@ -1,41 +1,100 @@
-{% extends "users/layout.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
 
-{% block body %}
-
-    <h1> Welcome, This is the profile of {{ request.user.email }}</h1>
-
-    <h1> List of events you are subscribed to:</h1>
-
-    <table border='1'>
-        <tr>
-          <th>Event Creator</th>
-          <th>Event Name</th>
-          <th>Date</th>
-          <th>Sport</th>
-          <th>Field</th>
-          <th>Button for unsubscribing</th>
-        </tr>
-        {% for x in events %}
-          <tr>
-              <td>{{ x.Event.Creator }}</td>
-              <td>{{ x.Event }}</td>
-              <td>{{ x.Event.Date }}</td>
-              <td>{{ x.Event.Sport }}</td>
-              <td>{{ x.Event.Field }}</td>
-              <td> <a href="Profile/Unsubscribe/{{ x.id }}"> Unsubscribe</a> </td>
-          </tr>
-        {% endfor %}
-    </table>
-
-    <br>
-    <a href ="{% url 'users:logout' %}"> Logout</a><br>
+<!------------------LIght BOx for Gallery-------------->
   
+<script type="text/javascript" src="{% static 'lightbox-plus-jquery.min.js' %}"></script>
+<!------------------LIght BOx for Gallery-------------->
+<title> Profile </title>
+</head>
 
-    <a href = "{% url 'users:GoToFeedback' %}"> Go to feeback</a><br>
+<body>
+
+
+    <!-------------------------------NAvigation Starts------------------>
+
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#3097D1">
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
+    
+    
+            <div class="collapse navbar-collapse" id="responsive">
+                <ul class="navbar-nav mr-auto text-capitalize">
+                    <li class="nav-item"><a href="{% url 'users:logout' %}" class="nav-link active">Logout</a></li>
+                    <li class="nav-item"><a href="{% url 'users:GoToFeedback' %}" class="nav-link">Go to feeback</a></li>
+                    <li class="nav-item"><a href="{% url 'users:CreateNewEvent' %}"  class="nav-link">Create New Event</a></li>
+                    <li class="nav-item"><a href="{% url 'users:GoToAdmin' %}" class="nav-link">Application Settings (only for admins)</a></li>    
+                </ul>
+    
+                <h3 class="text-light">{{ request.user.email }}</h3>
+                <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
+    
+            </div>
+
+        </nav>
     
 
-    <a href = "{% url 'users:CreateNewEvent' %}"> Create New Event</a><br>
+        <!---------------------------------------------Ends navigation------------------------------>
 
-    <a href = "{% url 'users:GoToAdmin' %}"> Application Settings (only for admins) </a><br>
+         <!---------------------------MOdal Section  satrts------------------->
 
-{% endblock %}
+    <div class="modal fade" id="modalview" >
+
+        </div>
+    
+        <!-------------------------------MOdal Ends---------------------------->
+    
+        <!-----------------------------------Banner/img Starts-------------------->
+
+
+        <div class="banner">
+            <div class="banner-title d-flex flex-column justify-content-center align-items-center">
+  
+                <!--<img src="{% static 'img/avatar-dhg.png' %}" alt="img" class="rounded-circle" width="80px" height="80px">-->
+                <h3 class="text-light">Welcome back</h3>
+                <p class="text-light">List of events you are subscribed to:</p>
+
+
+            </div>
+
+        </div>
+
+        <!--------------------Image Portfolio----------------->
+
+        <table border='1' align="center">
+            <tr>
+              <th>Event Creator</th>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Sport</th>
+              <th>Field</th>
+              <th>Button for unsubscribing</th>
+            </tr>
+            {% for x in events %}
+              <tr>
+                  <td>{{ x.Event.Creator }}</td>
+                  <td>{{ x.Event }}</td>
+                  <td>{{ x.Event.Date }}</td>
+                  <td>{{ x.Event.Sport }}</td>
+                  <td>{{ x.Event.Field }}</td>
+                  <td> <a href="Profile/Unsubscribe/{{ x.id }}"> Unsubscribe</a> </td>
+              </tr>
+            {% endfor %}
+        </table>
+
+    
+</body>
+
+<br><br><br>
+<footer>
+  <p>Authors: FORGED BY: VALENTÍN VALENCIA Y JUAN CAMILO SALAZAR QUIROZ<br>
+</footer>
+</html>

@@ -1,27 +1,89 @@
-{% extends "users/layout.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
 
-{% block title %} Login {% endblock %}
+<!------------------LIght BOx for Gallery-------------->
+<link rel="stylesheet" href="{% static 'lightbox.min.css' %}">  
+<!------------------LIght BOx for Gallery-------------->
+<title> Login </title>
+</head>
 
-{% block body %}
+<body>
 
-{% if message %}
-    <div> <p class="text-light">{{ message }} </p></div>
-{% endif %}
- 
-<form action="{% url 'users:login' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
 
-</form>
+    <!-------------------------------NAvigation Starts------------------>
 
-<form action="{% url 'users:register' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Create Account">
-</form>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#3097D1">
 
-{% endblock %}
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
+    
+    
+            <div class="collapse navbar-collapse" id="responsive">
+                <ul class="navbar-nav mr-auto text-capitalize">
+                    <h3 class="text-light">CALENDARIO DEPORTIVO</h3>
+                </ul>
+    
+                <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
 
+            </div>
+    
+        </nav>
+    
+
+        <!---------------------------------------------Ends navigation------------------------------>
+
+
+    
+         <!---------------------------MOdal Section  satrts------------------->
+
+        <div class="modal fade" id="modalview" >
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            </div>
+            </div>
+    
+
+            <div class="banner">
+                <div class="banner-title d-flex flex-column justify-content-center align-items-center">
+
+                    {% if message %}
+                    <div> <p class="text-light">{{ message }} </p></div>
+                    {% endif %}
+                
+                    <h2 class="text-light">Log In</h2>
+                    <form action="{% url 'users:login' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="email" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Login">
+
+                    </form>
+
+                    <br><br><h2 class="text-light">New here? Create your account</h2>
+                    <form action="{% url 'users:register' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="email" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Create Account">
+                    </form>
+                    <br><br>
+                    <p class="text-light">FORGED BY: VALENTÍN VALENCIA Y JUAN CAMILO SALAZAR QUIROZ.</p>
+                </div>
+            
+            </div>
+        </div>
+
+</body>
+
+<br><br><br>
+<footer>
+    <p>Authors: FORGED BY: VALENTÍN VALENCIA Y JUAN CAMILO SALAZAR QUIROZ<br>
+  </footer>
+</html>
